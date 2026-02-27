@@ -4,11 +4,13 @@ import http from "http";
 import pool from "./src/config/db.js";
 import initializeWebSocket from "./src/websocket/socketServer.js";
 import chatRouter from "./src/routes/chatRoutes.js";
+import authRouter from "./src/routes/authRoutes.js";
 
 const app = express();
 const server = http.createServer(app);
 
 app.use(express.json());
+app.use("/api/auth", authRouter); 
 app.use("/api/chat", chatRouter);
 
 // Basic health check route (industry standard)
